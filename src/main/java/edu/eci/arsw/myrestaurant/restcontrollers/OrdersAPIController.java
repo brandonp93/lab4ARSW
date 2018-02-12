@@ -105,7 +105,11 @@ public class OrdersAPIController {
         @RequestMapping(path = "/{idmesa}",method = RequestMethod.PUT)	
         public ResponseEntity<?> manejadorPostModifyOrden(@PathVariable int idmesa,@RequestBody Order o){
             try {
-                    //registrar dato                   
+                    //registrar dato 
+                    
+                    for (Map.Entry<String, Integer> entry : o.getOrderAmountsMap().entrySet()) {
+                           orders.getTableOrder(idmesa).addDish(entry.getKey(),entry.getValue());
+                    }
                     return new ResponseEntity<>(HttpStatus.ACCEPTED);
             } catch (Exception ex) {
                     Logger.getLogger(OrdersAPIController.class.getName()).log(Level.SEVERE, null, ex);
