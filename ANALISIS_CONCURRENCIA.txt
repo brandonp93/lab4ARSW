@@ -1,0 +1,1 @@
+Se puede presentar condición de carrera mientras una persona consulta totales pero otra esta añadiendo o borrando platos.

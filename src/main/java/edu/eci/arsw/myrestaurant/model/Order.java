@@ -1,6 +1,7 @@
 package edu.eci.arsw.myrestaurant.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.eci.arsw.myrestaurant.services.OrderServicesException;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -42,8 +43,23 @@ public class Order {
             int previousAmount=orderAmountsMap.get(p);
             orderAmountsMap.put(p, previousAmount+amount);
         }
+    } 
+    
+    public void removeDish(String p, int amount) throws OrderServicesException {
+        if (!orderAmountsMap.containsKey(p)){
+            throw new OrderServicesException("La mesa no ha pedido este plato");
+        }
+        else{
+            int previousAmount=orderAmountsMap.get(p);
+            if(previousAmount-amount>0){
+                orderAmountsMap.put(p, previousAmount-amount);
+            }
+            else{
+                orderAmountsMap.remove(p);
+            }
+        }
     }
-
+        
     @JsonIgnore
     public Set<String> getOrderedDishes() {
         return orderAmountsMap.keySet();
