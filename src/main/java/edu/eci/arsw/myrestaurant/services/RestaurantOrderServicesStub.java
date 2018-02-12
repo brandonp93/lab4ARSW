@@ -8,12 +8,14 @@ import edu.eci.arsw.myrestaurant.model.ProductType;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class RestaurantOrderServicesStub implements RestaurantOrderServices {
 
-    
-    BillCalculator calc = null;
+    @Autowired
+    BillCalculator calc;
 
     public RestaurantOrderServicesStub() {
     }
@@ -100,12 +102,14 @@ public class RestaurantOrderServicesStub implements RestaurantOrderServices {
         o.addDish("COKE", 4);
 
         tableOrders.put(1, o);
-
+        
         Order o2 = new Order(3);
         o2.addDish("HAMBURGER", 2);
         o2.addDish("COKE", 2);
 
         tableOrders.put(3, o2);
+        
+        
     }
 
 }
