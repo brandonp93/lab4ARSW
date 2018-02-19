@@ -47,7 +47,7 @@ public class OrdersAPIController {
 
         @Autowired
         RestaurantOrderServicesStub orders;
-
+        
         @RequestMapping(method = RequestMethod.GET)
         public ResponseEntity<?> manejadorGetOrders() throws OrderServicesException{
             try {
